@@ -1,0 +1,84 @@
+VPC Components:
+
+1. Subnets: 
+   A subnet can be assumed to be a smaller network that is part of a larger network. This smaller network is a range of IP addresses in your VPC.
+   It is a portion of the network that shares a common address component. All devices whose addresses have the same prefix are in the same subnet. 
+   There are two types of subnets. Private Subnet where resources are not exposed to the outside world and Public Subnet where resources are exposed to the internet through Internet Gateway.
+
+2. Internet Gateway:
+   It is a component that allows communication between resources in a VPC and the internet.
+   To connect to the internet, there should be an IGW in the VPC. Only one IGW can be attached to a VPC at a time.
+   Internet Gateway supports IPv4 and IPv6 traffic.
+
+3. NAT Gateway(Network Address Translation):
+   resources in the private subnet can connect to services outside the VPC through NAT Gateway but external services cannot initiate a connection with those instances/resources (NAT GW works only one way unlike the IGW).
+   is used to enable instances present in a private subnet to help connect to the internet or AWS services.
+   They don’t support IPV4 traffic. In the case of IPV4 traffic, an egress-only internet gateway needs to be used (which is another service).
+   
+   Working:-
+   A NAT gateway in a device forwards the traffic from instances present in the private subnet to the internet/AWS services, and sends back the response from the server back to the instance.
+   When the traffic moves to the internet, an IPV4 address gets replaced with the NAT’s device address. 
+   Once the response is obtained, it has to be sent to the instance, and in this case, the NAT device translates the address back to the IPV4 and it is given to the IPV4 address.
+   NAT gateway supports the following protocols: TCP, UDP, and ICMP.
+   The internet gateway is used to provide internet access to the NAT gateway. But in some cases, some customers use their NAT gateways with the transit gateway or virtual private gateway to communicate privately with other VPCs or on-premises environments.
+
+4. Route Tables:
+   These are the set of rules, that are used to determine where the network traffic has to be directed. The route table specifies the destination (IP address) and target.
+   It decide how to control the traffic between subnets within a VPC and manage the routing of traffic in and outside of the VPC.
+   A VPC can have one or more route tables, each associated with one or more subnets.
+
+5. Security Group:
+   These are a set of firewall rules which control the traffic that is allowed to reach and leave the resources that it is associated with. For each security group, you add rules that control the traffic based on protocols and port numbers. 
+   Using Security Groups, we can only create rules with allow action and cannot create rules with deny action. They operate at the instance level and you can assign a single security group to multiple instances.
+   These are stateful, which means that when you allow inbound traffic for a specific connection, the corresponding outbound traffic for that connection is automatically allowed. 
+   E.g: If the incoming port of a request is 80, the outgoing response of that request is also 80 (it is opened automatically) by default.
+   Every VPC can belong to different security groups.
+
+6. Network Access Control Lists (NACLs):
+   NACLs are an additional layer of security to your VPC which allows or denies specific inbound or outbound traffic at the subnet level.
+   Multiple subnets can be bound with a single NACL, but one subnet can be bound with a single NACL only, at a time.
+   It is considered to be the second layer of defence.
+   The default network ACL is configured to allow all traffic to flow in and out of the subnets to which it is associated.
+   These are stateless, meaning any change applied to an incoming rule isn’t automatically applied to an outgoing rule.
+   E.g: If a request comes through port 80, it should be explicitly indicated that its outgoing response would be the same port 80.
+
+7. VPC Peering:
+   It a networking connection between two VPCs that enables you to route traffic between them using private IPv4 addresses or IPv6 addresses.
+   Once connected by a VPC peering connection, instances in either VPC can communicate with each other just as if they were on the same network.
+   The connected VPCs can be in different regions and well as different AWS accounts. If the connected VPCs are in separate regions, this is referred to as inter-region peering.
+   The connection is made via private IP addresses to allow the connectivity. There is no charge to establish a VPC peering connection, however there is a charge for data transfer across the connection.
+   You cannot create a VPC peering connection between two VPCs that have the same or overlapping CIDR blocks.
+   Transitive peering is not possible. Supports up to 125 VPC peering connections per VPC
+
+
+
+8. Transit Gateway:
+   It simplifies cloud infrastructure management. It acts as a central hub that connects multiple Virtual Private Clouds (VPCs) and on-premises networks through a single gateway, making it easier to scale and maintain your network architecture. 
+   Network administrators may quickly link VPCs to their on-premises data centers as well as VPCs located within the same region or across many regions by utilizing AWS Transit Gateway.
+   When a VPC or VPN connection is attached to the Transit Gateway, it gains access to all other attached VPCs and VPN connections. This allows for transitive routing, enabling seamless communication between any VPC within the Transit Gateway, 
+   even if they don’t have direct peering connections with each other. This simplifies complex network architectures and reduces administrative overhead.
+   It supports up to 5,000 VPC attachments, making it suitable for large-scale deployments. It also allows overlapping IP address ranges among connected VPCs, which is not possible with traditional VPC peering.
+   You can attach a peering connection with another Transit Gateway.
+
+9. VPC Flow Logs:
+   It is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your VPC. Flow log data can be published to Amazon CloudWatch Logs and Amazon S3. 
+   After you've created a flow log, you can retrieve and view its data in the chosen destination.
+   A flow log record represents a network flow in your VPC. By default, each record captures a network IP traffic flow that occurs within an aggregation interval. Each record is a string with fields separated by spaces. 
+   A record includes values for the different components of the IP flow, for example, the source, destination, and protocol. When you create a flow log, you can use the default format for the flow log record, or you can specify a custom format. 
+   Use VPC flow logs to identify latencies, establish performance baselines and tweak applications. VPC flow logs can reveal flow duration, latency, and bytes sent, allowing you to identify performance issues and deliver a better user experience quickly.
+   Three kinds of flow logs: VPC, Subnet, Network Interface.
+
+10. VPC Endpoint: 
+    A VPC endpoint allows you to privately connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink without requiring an internet gateway, NAT device, VPN Connection, or AWS Direct Connect connection.
+    Instances in your VPC do not require public addresses to communicate with the resources in the service. Traffic between your VPC and the other service does not leave the Amazon network.
+    Before AWS VPC endpoints, all traffic between AWS resources was routed through the public internet. This main problem is solved by VPC endpoints.
+    If VPC Endpoint is not used then scenario will be: 
+      EC2 instance --> AWS VPC --> Public Internet --> AWS Service
+    If VPC Endpoint is used then scenario will be:
+      EC2 Instance--> AWS VPC--> AWS VPC Endpoint --> AWS Service
+   Two types of Endpoint:
+   1. Interface Endpoint: Customers can use VPC Interface endpoints to connect to over 130 AWS Services and over 1300 AWS third-party partners who also provide connectivity services.
+      Interface endpoints are built on this technology, called PrivateLink.
+   2. Gateway Endpoint: It is only used for accessing the DynamoDB and S3 services. Gateway endpoints do not use PrivateLink.
+
+ 
