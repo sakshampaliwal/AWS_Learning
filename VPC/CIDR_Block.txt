@@ -1,0 +1,36 @@
+CIDR Block:
+
+Classless Inter Domain Routing or CIDR is a prefix based standard for the representation of IP addresses and their routing properties. 
+It was introduced to enable blocks of IP addresses to be grouped together for inclusion in router routing tables instead of needing to include massive blocks of individual IP information. 
+
+It sometimes referred to as super-netting, is an alternate method of representing a subnet mask and is made up of the binary representation of the network address followed by a slash and 
+a suffix that declares the total number of bits reserved that need to be matched in the address.
+
+The old method of IP addressing came with inefficiencies that exhausted the availability of IPv4 addresses faster than it needed to. The classful routing system included classes A, B, and C:
+
+Class A - Over 16 million host identifiers
+Class B - 65,535 host identifiers
+Class C - 254 host identifiers
+
+The problem would commonly occur when an organization required more than 254 host machines and therefore would no longer fall into class C but rather class B. 
+This means that the organization would use a class B license even though they had far less than 65,535 hosts. 
+Therefore if an organization only required 2,500 hosts, they would be wasting about 63,000 hosts by holding a class B license which would greatly decrease the availability of IPv4 addresses unnecessarily.
+
+CIDR is based on variable-length subnet masking (VLSM). This allows it to define prefixes of arbitrary lengths making it much more efficient than the old system. 
+CIDR IP addresses are composed of two sets of numbers. The network address is written as a prefix, like you would see a normal IP address (e.g. 192.255.255.255). 
+The second part is the suffix which indicates how many bits are in the entire address (e.g. /12). Putting it together, a CIDR IP address would look like the following:
+
+192.255.255.255/12
+This specifies that there are 12 bits used for the network portion that we are referring to and other bits are used by host.
+
+
+For example, we could express the idea that the IP address 192.168.0.15 is associated with the netmask 255.255.255.0 by using the CIDR notation of 192.168.0.15/24. 
+This means that the first 24 bits of the IP address given are considered significant for the network routing.
+
+- To allow access from anyone anywhere, like say the internet, you can use 0.0.0.0/0 
+
+- By the same token you could use /32 to limit access to a single IP address
+  10.10.101.1/32 would restrict access to that single IP address.
+  here, A "/32" subnet mask are used to represent the specific host address, with no room for additional hosts.
+  it's a very specific address, often used when you want to refer to a single host rather than a range of hosts within a network.
+

@@ -1,0 +1,1 @@
+A public subnet means that the EC2 instances from that subnet have internet access, whereas the EC2 instances from the private subnet do not have internet access(there are few ways how to provide internet access to the EC2 instances from the private subnet).
