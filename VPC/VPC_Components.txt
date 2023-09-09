@@ -11,8 +11,8 @@ VPC Components:
    Internet Gateway supports IPv4 and IPv6 traffic.
 
 3. NAT Gateway(Network Address Translation):
-   resources in the private subnet can connect to services outside the VPC through NAT Gateway but external services cannot initiate a connection with those instances/resources (NAT GW works only one way unlike the IGW).
-   is used to enable instances present in a private subnet to help connect to the internet or AWS services.
+   Resources in the private subnet can connect to services outside the VPC through NAT Gateway but external services cannot initiate a connection with those instances/resources (NAT GW works only one way unlike the IGW).
+   It is used to enable instances present in a private subnet to help connect to the internet or AWS services.
    They don’t support IPV4 traffic. In the case of IPV4 traffic, an egress-only internet gateway needs to be used (which is another service).
    
    Working:-
