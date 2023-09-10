@@ -1,0 +1,32 @@
+VPN:
+
+A VPN or Virtual Private Network creates a private network connection between devices through the internet. VPNs are used to safely and anonymously transmit data over public networks. 
+They work by masking user IP addresses and encrypting data so it's unreadable by anyone not authorized to receive it.
+
+Your IP address contains information about your location and browsing activity. All websites on the Internet track this data using cookies and similar technology. They can identify you whenever you visit them. 
+A VPN connection hides your IP address so that you remain anonymous on the Internet.
+
+A VPN service uses cryptography to protect your internet connection from unauthorized access.
+
+How does VPN works:
+
+When you use a VPN, it encrypts all your data on the client side. Then after the data is encrypted, it's passed through a VPN tunnel which others can’t access, and then it reaches the internet.
+
+1. First, you turn the VPN software on through a button inside the app. The software will connect your computer to a VPN server, which will act as an intermediary between your computer and any servers you want to access.
+   Many VPN providers let you select the country or city of the server so you can browse local content.
+
+2.  it will encrypt any data you download or upload and send it back and forth through a “VPN tunnel.” 
+
+3. Your client then decrypts the data and shows you the website or content you accessed.
+   This data still travels through your ISP, but your ISP can’t see it because it’s encrypted. Your ISP can only see that you’re transferring data to and from the VPN server.
+
+Many VPNs also use encapsulation to wrap individual “data packets” in packets created by the VPN, so the ISP can’t make any smart guesses about what you’re doing.
+
+
+Disadvantages of VPN:
+
+1. Slows Your connection: VPNs tend to slow your internet connection. 
+   As the VPN servers might be located far away from you (might be in some other geographic location or country), your data will need to travel farther across the internet and will slow your connection speed.
+
+2. VPNs log your activities: VPNs keep logs of your activities. You heard right. Regardless of what policies they have, even if they say that they don’t keep any logs, they do. 
+   Governments have taken action against VPNs, and the VPN companies tend to deliver all the activity logs of a user in cases of international crime, terrorist activity, or hacking.
