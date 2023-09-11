@@ -1,0 +1,79 @@
+S3:
+
+S3 stands for Simple Storage Service. Amazon S3 (Simple Storage Service) provides object storage, which is built for storing and recovering any amount of information or data from anywhere over the internet.
+S3 lets you store data in a range of “storage classes.” These classes are based on the frequency and immediacy you require in accessing files. 
+S3 in Amazon has two primary entities called buckets and objects. Objects are stored inside buckets. 
+
+Object:
+In Amazon S3, all data files are considered objects irrespective of their extension or format. An object consists of the file data and metadata. 
+We can upload a maximum of a 5TB file as a single object in an S3 bucket. We can upload, download, and open the objects in the bucket.
+
+Key:
+A key is a unique identifier created by AWS whenever we upload an object. Each object will have a unique object key within a bucket.
+
+Bucket:
+A bucket is a container for objects. Bucket resides in a region. Once the bucket is created, we cannot change the bucket’s region or name.
+By default, the maximum number of buckets that can be created per account is 100. For additional buckets, one can submit a request for a service limit increase.
+The bucket must then be given a globally unique name. To reduce cost and latency, it’s advised to choose a location that’s closer to you. 
+When choosing a bucket name, follow the steps below: 
+ 1. The name must be unique
+ 2. It should not have uppercase characters.
+ 3. It must begin with a lowercase number or letter. 
+ 4. It must be between 3–63 characters long.
+
+Versioning:
+Versioning refers to maintaining multiple variants of an object in the same Amazon S3 bucket. 
+It is used for the preservation, retrieving and restoration of every version of each object that is stored in the S3 bucket. Versioning can be used to recover from unintended user actions and application failure easily. 
+Buckets can be in one of the three states: Unversioned (default), Versioning-enabled, Versioning-suspended
+S3 Object Versioning is not enabled by default and has to be explicitly enabled for each bucket and applied to all objects within the bucket. Once enabled, versioning cannot be disabled and can only be suspended. 
+
+Access Control List:
+A document for verifying access to S3 buckets from outside your AWS account. 
+Our buckets and objects can be public or private. Using ACL, we allow authorized users of the same AWS account or another AWS account to read and write to the objects in a bucket.
+AWS suggests using the bucket policy instead of the ACL unless you have a use case that needs control over each object individually.
+
+Bucket Policy:
+S3 bucket policy is a set of rules that defines the access control for Amazon S3 buckets. It determines who can access the contents of the bucket and what level of access they have. 
+Bucket policies are written in JSON format and can be used to grant or deny permissions to specific users or groups.
+It decides: Who can access the buckets ? , Who can read or write the objects contained within the bucket ?
+
+Lifecycle Policies:
+Lifecycle rules allow you to manage objects lifecycle. With lifecycle configuration rules, you can tell Amazon S3 to transition objects to less expensive storage classes, or archive or delete them.
+As your application grows, you may accumulate a large amount of data that’s no longer needed or used frequently. This data can take up valuable storage space and increase storage costs. 
+By setting up a lifecycle rule for a folder, you can automatically move old or infrequently accessed data to a cheaper storage class or delete it altogether.
+Lifecycle policies are implemented at the Bucket level and you can have up to 1000 policies per Bucket.
+
+S3 Storage Classes:
+ 1. S3 Standard:
+    S3 Standard is the default storage class if none of the storage class is specified during upload.
+    It is designed for high-usage, “hot” data storage. High capacity and low latency.
+    Most expensive storage class among all others.
+    Best for: Cloud applications, dynamic websites, content distribution, mobile and gaming applications, and big data analytics.
+ 
+ 2. Amazon S3 Standard Infrequent Access:
+    It is optimized for long-lived and less frequently accessed data but requires rapid access whenever required.
+    Ideal for backups, long-term storage, and as a data store for disaster recovery. 
+    Less expensive than S3 Standard storage but you will be charged a retrieval fee hence suitable for infrequently accessed data.
+
+ 3. S3 Intelligent-Tiering:
+    If you put objects in the S3 Intelligent-Tiering storage class, AWS will monitor and move your data on a per-object level to the proper storage tier. 
+    If your object hasn’t been accessed in 30 days, AWS will move it to the infrequent access storage tier. 
+    If the object is then accessed after being moved to infrequent access, AWS will move it back to the frequent access storage class for cheaper subsequent accesses.
+    No retrieval fees or additional tiering fees are using the S3 Intelligent-Tiering storage class. It is ideal for storing long-lived data where the access patterns are unknown.
+
+ 4. S3 One Zone-IA:
+    It is for the data that is accessed less frequently. 
+    Since the other S3 storage class store data in a minimum of 3 Availability Zones (AZ), S3 One Zone-IA stores data in only one AZ which makes the costs 20% lesser than the S3 Standard-IA. 
+    It is ideal for Storing secondary backup copies of on-premises data or easily re-creatable data.
+
+ 5. S3 Glacier:
+    It is a perfect solution for long storage and data archiving that don’t require instant access. The service allows storing large or small volumes of data at a low cost. 
+    At the same time, the retrieval process may take several hours. The minimum period of storage is 90 days.
+    There is a charge for data retrieval of more than 10 GB free tier per month. Access to data is limited depending on the chosen retrieval options. 
+    Ideal for medical images, news media assets, or user-generated content etc.
+
+ 6. S3 Glacier Deep Archive:
+    Glacier Deep Archive provides the lowest-cost storage class and supports long-term retention and digital preservation for data that may be accessed only once or twice in a year. 
+    It is ideal for those industries which store data for 5-10 years or longer like healthcare, finance, etc. It can also be used for backup and disaster recovery.
+    It has a minimum storage duration period of 180 days.
+    
