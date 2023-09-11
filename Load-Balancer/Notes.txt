@@ -1,0 +1,33 @@
+Load Balancer:
+
+The load balancer is a piece of software or hardware that distributes incoming requests to the backend servers. 
+There are three types of Elastic Load balancers currently offered by the AWS EC2 service. They are
+1. Application Load Balancer
+2. Network Load Balancer
+3. Gateway Load Balancer
+
+- The application load balancer AWS is used to distribute traffic across the target. The term "target" in this context refers to EC2 servers or Lambda.  
+
+- Customers/clients will send requests to the application load balancer, which will then distribute/send the requests to the backend targets (EC2 or lambda). 
+  The application load balancer is scalable natively. As a result, we don't need to be concerned about scaling the application load balancer.
+
+- The Application Load Balancer distributes incoming HTTP and HTTPS traffic across multiple targets such as Amazon EC2 instances, microservices, and containers, based on request attributes. 
+  When the load balancer receives a connection request, it evaluates the listener rules in priority order to determine which rule to apply, and if applicable, it selects a target from the target group for the rule action.
+
+- The load balancer acts as the entry point into your system-->listener listens for incoming connections-->load balancer forwards requests to a target group-->target group consists of one or multiple targets-->target might be an EC2 instance, container, or internal service.
+
+1. Application Load Balancer:
+   It operates at Application Layer of OSI Model(Layer 7) and designed to route HTTP and HTTPS traffic.
+   It is best suited for applications and can perform content-based routing, making decisions based on the content of the request (URL, host, headers) 
+   and supports features like path-based routing, host-based routing, and request-based routing.
+
+2. Network Load Balancer:
+   It operates at Transport Layer(Layer 4).
+   Designed to route TCP/UDP traffic for low-latency, high-throughput applications that require extreme performance and scalability. 
+   NLB is suitable for non-HTTP(S) traffic, such as gaming, IoT, and UDP-based protocols.
+
+3. Gateway Load Balancer:
+   It operates at Network Layer(Layer 3).
+   Designed for routing traffic to Virtual Private Gateways (VPGs) in AWS. 
+   It is used to load balance traffic to VPNs, Direct Connect gateways, or Transit Gateways.
+
