@@ -1,0 +1,51 @@
+DNS:
+A DNS or a domain name system is used to translate domain names into IP addresses, allowing the browsers to access other internet resources.
+
+
+How does DNS works?
+
+When people type a website address into their web browser, they get directed to the desired site. 
+But this quick action actually involves a series of steps called DNS lookup or DNS resolution process.
+
+E.g:
+
+1. You want to be taken to google’s website, so you enter the domain name google.com into the web browser’s address bar. 
+   What you’re doing here is submitting a DNS request.
+
+2. First, your computer will search its hosts file and cache. The hosts file is a plain text file that maps hostnames to IP addresses in an operating system, 
+   while the cache is temporary data stored by a hardware or software component.
+
+3. Matching IP addresses for the DNS service are commonly found in your browser cache or internet service provider (ISP) cache.
+
+4. If your computer can’t find a matching IP address in your hosts file or cache, it will submit your DNS query or request to a network of four DNS servers.
+
+5. The DNS resolver or recursive resolver acts as the primary intermediary between a computer and other DNS servers. 
+   Its purpose is to forward a request to other domain name system servers and then send it back once fulfilled.
+   When the DNS resolver receives a request, it will first search its cache to find a matching IP address for the domain name. 
+   If said IP address found, the request sent to the DNS servers ends here, and you will immediately see the site you want to visit.
+   If no match is found in its cache, the DNS resolver will send the request to the next DNS server – the root nameserver.
+
+6. The root nameserver or root DNS server is at the top of the DNS hierarchy. Think of it as a bank of reference.
+   It doesn't store the information you want (the IP address for a domain name), but it provides directions on where it can be found.
+   Once the root nameserver receives a request from the recursive DNS resolver, it will identify the top-level domain of the domain name. 
+   Then, it will tell the recursive resolver to go to the correct TLD nameserver.
+
+7. The TLD nameserver is a DNS server function that is responsible for storing and managing information about domain names that use a specific top-level domain (TLD).
+   A top-level domain (TLD), also known as a domain extension, is the rightmost part of a domain name. In google.com, 
+   for example, google is the domain name, while .com is the TLD. Other common TLDs include .org and .net.
+   The Advanced Research Projects Agency Network (ARPANET) developed the domain name system, including a TLD, to make memorizing IP addresses and organizing internet addresses easier.
+   If your query is to find the IP address of google.com, the root nameserver will redirect the DNS recursive resolver to the .com TLD nameserver. 
+   Next, the TLD nameserver will inform the resolver about the location of the matching IP address at a specific authoritative nameserver.
+
+8. The authoritative nameserver or authoritative DNS server is the final authority in the DNS resolution process. It stores all information related to the domain name you want to visit, including its IP address. 
+   The recursive resolver will obtain the IP address and send it back to your computer.
+
+9. The DNS resolver then responds to the web browser with the IP address of the domain requested initially.
+
+10. The browser makes a HTTP request to the IP address. The server at that IP returns the webpage to be rendered in the browser.
+
+For more read these blogs: 
+https://www.cloudflare.com/learning/dns/what-is-dns/
+https://www.hostinger.in/tutorials/what-is-dns
+https://www.hostinger.in/tutorials/what-is-tld
+
