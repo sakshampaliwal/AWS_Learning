@@ -34,6 +34,15 @@ VPC Components:
    E.g: If the incoming port of a request is 80, the outgoing response of that request is also 80 (it is opened automatically) by default.
    Every VPC can belong to different security groups.
 
+   In SG there are two type of traffic:
+   1. Inbound Traffic(The traffic comming to the application like requests)
+   2. Outbound Traffic(The traffic going out of the application like response)
+
+   By default aws allows outbound traffic but port 25 traffic is not allowed as this is the port for mailing services.
+   and by default it denies inbound traffic.
+
+   SG is applied at instance level whereas NACL is applied at subnet level.
+
 6. Network Access Control Lists (NACLs):
    NACLs are an additional layer of security to your VPC which allows or denies specific inbound or outbound traffic at the subnet level.
    Multiple subnets can be bound with a single NACL, but one subnet can be bound with a single NACL only, at a time.
@@ -42,6 +51,20 @@ VPC Components:
    These are stateless, meaning any change applied to an incoming rule isn’t automatically applied to an outgoing rule.
    E.g: If a request comes through port 80, it should be explicitly indicated that its outgoing response would be the same port 80.
 
+   It is first layer of defence in a subnet.
+   SG is applied at instance level and if we have lots of instances then it will create a problem to apply the sgs on all.
+   This is where NACL comes in. 
+   Other advantage is you cannot deny traffic in SGs you have only allow option, whereas NACL provide both option like to allow and deny particular traffic.
+   Let's say your organisation say to not allow traffic on port 80 then to do so you deny traffic in port 80 in NACL, we will not
+   do this in SG level because we have to change rules in all instances which is more problematic.
+
+   In NACl Rule numbers are used to specify the order in which rules are evaluated within a NACL. They are integers ranging from 100 to 32766.
+   NACL's rules are evaluated in ascending order of their rule numbers. The first rule that matches the packet's characteristics 
+   (e.g., source IP address, destination IP address, protocol, and port) is applied. Once a match is found, rule evaluation stops, and the associated action (allow or deny) is taken.
+
+Note: SGs are stateful and NACL are stateless
+      Stateful systems remember and consider the history of interactions, while stateless systems treat each interaction as if it's the first time, without any knowledge of what happened before.
+
 7. VPC Peering:
    It a networking connection between two VPCs that enables you to route traffic between them using private IPv4 addresses or IPv6 addresses.
    Once connected by a VPC peering connection, instances in either VPC can communicate with each other just as if they were on the same network.
@@ -49,7 +72,6 @@ VPC Components:
    The connection is made via private IP addresses to allow the connectivity. There is no charge to establish a VPC peering connection, however there is a charge for data transfer across the connection.
    You cannot create a VPC peering connection between two VPCs that have the same or overlapping CIDR blocks.
    Transitive peering is not possible. Supports up to 125 VPC peering connections per VPC
-
 
 
 8. Transit Gateway:
