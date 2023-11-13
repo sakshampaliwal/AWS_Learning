@@ -103,4 +103,5 @@ Note: SGs are stateful and NACL are stateless
       Interface endpoints are built on this technology, called PrivateLink.
    2. Gateway Endpoint: It is only used for accessing the DynamoDB and S3 services. Gateway endpoints do not use PrivateLink.
 
- 
+11. S3 Gateway:
+   
