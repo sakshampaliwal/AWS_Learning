@@ -1,0 +1,8 @@
+So if you want to access aws through cli then you can do so by:
+1. Go to google and search aws cli install then install it.
+2. To check version: aws --version
+3. Open AWS account and go to security credential section of your account and then generate a ACCESS Key.
+   This can be called as programmatic access.
+4. In cli type aws configure, it will ask the access key and secret access key then copy paste it.
+5. You are done!
+
