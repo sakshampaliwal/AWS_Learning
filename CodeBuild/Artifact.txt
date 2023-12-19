@@ -1,0 +1,59 @@
+Artifact:
+- These are typically generated during the build process and serve as deployable units. 
+- Artifacts can include various components (compiled code, configurations, dependencies) bundled together in a package.
+- The generated artifacts are stored in an artifact repository, like Amazon S3 or an artifact management tool 
+- Artifacts are the key output of the build process in CodeBuild, containing everything needed to deploy the application.
+- Artifacts persist data after a job is completed and may be used for storage of the outputs of your build process.
+- When a Java build/test process finishes, the output of the process is saved as a .jar file. You can store this file as an artifact, keeping it available after the process has finished.
+
+Syntax:
+artifacts:
+  files:
+    - app/*           # Include files from the 'app' directory
+    - config.ini      # Include a specific configuration file
+  base-directory: /   # Set the base directory for artifacts
+  discard-paths: yes  # Discard path information when packaging
+
+files Key: Specifies the list of files or directories to include in the artifacts.
+You can specify individual files, directories, or use patterns (e.g., app/* to include all files within the app directory).
+
+base-directory: This section defines the root directory from which the files will be taken.
+/app: This sets /app as the base directory. So, when including files with the files section, their paths will be relative to /app. For example, with the /app/src/myfile.txt file, only myfile.txt will be included in the artifact, not the full path.
+
+E.g: 
+files:
+  - data/*.csv
+  - reports/summary.txt
+
+base-directory: /project/workspace
+
+Here, "data/*.csv" refers to all CSV files within the /project/workspace/data directory, not /data directly. 
+Similarly, "reports/summary.txt" points to /project/workspace/reports/summary.txt.
+
+Patterns:
+- app/**/*.py # Include all Python files in 'app' and its subdirectories
+- logs/**/*.log  # Include all log files in 'logs' and its subdirectories
+- '!**/*.txt' # Exclude all .txt files in the project
+- '!src/config.ini'  # Exclude a specific file within 'src'
+- logs/** # Include all files in the 'logs' directory and its subdirectories
+- logs/* # Include all files in 'logs', excluding subdirectories
+
+
+Wildcard Patterns:
+* : Matches zero or more characters within a directory.
+    Example: src/* includes all files within the 'src' directory.
+
+** : Matches directories and files within the specified directory recursively.
+    Example: logs/** includes all files within the 'logs' directory and its subdirectories.
+
+What is Wildcard?
+It helps you find things when you're not sure of the exact name.
+In games like poker, similar to how a joker can represent any other card in the deck, wildcards in searching allow you to represent any characters in a specific location within a search term. 
+They offer flexibility and unpredictability, hence the "wild" association.
+
+Here are some common wildcards and their uses:
+    Asterisk (*): Replaces any number of characters. For example, searching for "flower*" will find "flower," "flowers," "flowering," and any other words starting with "flower."
+    Question mark (?): Replaces a single character. For example, searching for "col?r" will find both "color" and "colour."
+    Brackets ([]): Used to specify a set of allowed characters. For example, searching for "b[ae]ll" will find "ball" and "bell" but not "bill."
+    Ranges (-): Used to specify a range of characters. For example, searching for "b[a-c]d" will find "bad," "bbd," and "bcd."
+
