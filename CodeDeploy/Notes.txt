@@ -62,7 +62,7 @@ Timeout:
 If the script/command takes longer than the specified timeout, the deployment process may mark it as failed. It is in seconds.
 
 Runas: 
-It specifies the user account or role the script should run as. Think of it as who the instance should run/install the script as i.e root or a different IAM user
+It specifies the user account or role the script should run as. Think of it as who the instance should run/install the script as i.e root or a different IAM user.
 
 
 
